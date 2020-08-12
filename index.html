@@ -26,5 +26,8 @@
             document.getElementById('outputField').innerText = model.predict(tf.tensor2d([20],[1,1]));
         }
         learnLinear(); 
+		
+		const model2 = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
+		const model2 = await tf.loadLayersModel('https://github.io/SretenPe/sample-test-app/model.json');
     </script>
 </html>
