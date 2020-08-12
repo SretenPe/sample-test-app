@@ -60,12 +60,12 @@
             var reader = new FileReader();
             const img = new Image()
             
-            reader.readAsDataURL(file);
+            
             reader.onload = function (e) {
-                $('#blah')
-                    .attr('src', e.target.result);
                 img.src = e.target.result
             };
+
+            reader.readAsDataURL(file);
 
             
 
@@ -75,7 +75,7 @@
             const ctx = elem.getContext('2d')
             ctx.drawImage(img, 0, 0, 224, 224);
             var imgData = ctx.getImageData(0, 0, 224, 224)
-            var data = ctx.canvas.toDataURL(img, 'image/png' , 1)
+            
 
             var example = tf.browser.fromPixels(imgData);
             example = example.expandDims(0);
