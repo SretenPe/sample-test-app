@@ -8,6 +8,47 @@
         </script>
 
         <style>
+             body, html {
+			  height: 100%;
+			}
+
+			* {
+			  box-sizing: border-box;
+			}
+
+			.bg-image {
+			  /* The image used */
+			  background-image: url("https://team3pytest.herokuapp.com/edit1.jpg");
+
+			  /* Add the blur effect */
+			  filter: blur(15px);
+			  -webkit-filter: blur(15px);
+
+			  /* Full height */
+			  height: 100%;
+
+			  /* Center and scale the image nicely */
+			  background-position: center;
+			  background-repeat: no-repeat;
+			  background-size: cover;
+			}
+
+			/* Position text in the middle of the page/image */
+			.bg-text {
+			  background-color: rgb(0,0,0); /* Fallback color */
+			  background-color: rgba(0,0,0, 0.7); /* Black w/opacity/see-through */
+			  color: white;
+			  font-weight: bold;
+			  border: 3px solid #f1f1f1;
+			  position: absolute;
+			  top: 50%;
+			  left: 50%;
+			  transform: translate(-50%, -50%);
+			  z-index: 2;
+			  width: 80%;
+			  padding: 20px;
+			  text-align: center;
+			 }
             .button {
               border: none;
               color: white;
@@ -25,42 +66,43 @@
         </style>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <img alt="Bootstrap Image Preview" src="https://team3pytest.herokuapp.com/edit1.jpg" width="600" height="400"/>
-                    <div class="jumbotron card card-block">
-                        <h2>
-                            Signature Fraud Detection
-                        </h2>
-                        <p>
-                            To verify a signature, click the button below and upload a close-up image of a signature.
-                        </p>
-                        <input type='file' onchange="readURL(this);" />
-                        <img id="blah" src="https://placehold.it/180" alt="your image" width="224" height="224"/> 
-                        <button class="button button2" onclick="predict()">Predict</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label>Original prediction</label>
-                    <div id="zeroPrediction"></div>
-                </div>
-                <div class="col-md-4">
-                    <label>Forge prediction</label>
-                    <div id="onePrediction"></div>
-                </div>
-                <div class="col-md-4">
-                    <label>Final prediction</label>
-                    <div id="prediction"></div>
-                </div>
-            </div>
-        </div>
+        <div class="bg-image"></div>
 
+		<div class="bg-text">
+		  <h1>Signature fraud detection</h1>
+		  <p>To verify a signature, click the button below and upload a close-up image of a signature.</p>
+		  
+		  <br>
+		  <div class="row">
+			<div class="col-xl-6">
+				<img id="blah" src="https://placehold.it/224/008CBA/FFFFFF?text=Team3.py" alt="your image" width="224" height="224"/>
+			</div>
+			<div class="col-xl-6">
+				<div class="row">
+					<div class="col-md-8">
+						<label>Original prediction</label>
+						<label id="zeroPrediction"></label>
+					</div>
+					<div class="col-md-8">
+						<label>Forge prediction</label>
+						<label id="onePrediction"></label>
+					</div>
+					<div class="col-md-8">
+						<label>Final prediction</label>
+						<label id="prediction"></label>
+					</div>
+				</div>
+			</div>
+			 
+		  </div>
+          <br>
+          <div style="text-align:center">
+			<input type='file' onchange="readURL(this);" />
+			<button class="button button1" onclick="predict()">Predict</button>
+		  </div>
+		</div>
     </body>
     <script>
-        
-
         function readURL(input) 
         {
             if (input.files && input.files[0]) 
