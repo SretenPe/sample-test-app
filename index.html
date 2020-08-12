@@ -34,23 +34,46 @@
 
         function readURL(input) 
         {
-            if (input.files && input.files[0]) {
+            if (input.files && input.files[0]) 
+            {
                 var reader = new FileReader();
-
+                const img = new Image()
+                
                 reader.onload = function (e) {
                     $('#blah')
                         .attr('src', e.target.result);
+                    img.src = e.target.result
                 };
 
                 reader.readAsDataURL(input.files[0]);
+
         }
         }
 
         async function predict() 
         {
             let model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
-            let img = document.getElementById('blah');
-            var example = tf.browser.fromPixels(img);
+            model.summary();
+
+            var reader = new FileReader();
+            const img = new Image()
+            
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result);
+                img.src = e.target.result
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+            const elem = document.createElement('canvas');
+            elem.height = 224
+            elem.width = 224
+            const ctx = elem.getContext('2d')
+            ctx.drawImage(img, 0, 0, width, height)
+            const data = ctx.canvas.toDataURL(img, 'image/png' , 1);
+
+            var example = tf.browser.fromPixels(data);
             example = example.expandDims(0);
             const output = await model.predict(example).data();
             console.log(output);
