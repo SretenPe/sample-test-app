@@ -28,7 +28,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
+                    <img alt="Bootstrap Image Preview" src="https://team3pytest.herokuapp.com/edit1.jpg" />
                     <div class="jumbotron card card-block">
                         <h2>
                             Signature Fraud Detection
@@ -95,8 +95,8 @@
             example = example.expandDims(0);
             const output = await model.predict(example).data();
 
-            var zero_prediction = output[0]
-            var one_prediction = output[1]
+            var zero_prediction = output[0].toFixed(4)
+            var one_prediction = output[1].toFixed(4)
 
             var finalPrediction = zero_prediction>one_prediction ? 'Signature is original' : 'Signature is forged'
 
