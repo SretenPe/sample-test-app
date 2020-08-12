@@ -3,6 +3,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+        <script>
+            var image = new Image()
+        </script>
 
         <style>
             .button {
@@ -37,12 +40,11 @@
             if (input.files && input.files[0]) 
             {
                 var reader = new FileReader();
-                const img = new Image()
                 
                 reader.onload = function (e) {
                     $('#blah')
                         .attr('src', e.target.result);
-                    img.src = e.target.result
+                    image.src = e.target.result
                 };
 
                 reader.readAsDataURL(input.files[0]);
@@ -54,26 +56,24 @@
         {
             let model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
             model.summary();
-            const preview = document.querySelector('blah');
-            const file = document.querySelector('input[type=file]').files[0];
+            // const preview = document.querySelector('blah');
+            // const file = document.querySelector('input[type=file]').files[0];
 
-            var reader = new FileReader();
-            const img = new Image()
+            // var reader = new FileReader();
+            // const img = new Image()
             
             
-            reader.onload = function (e) {
-                img.src = e.target.result
-            };
+            // reader.onload = function (e) {
+            //     img.src = e.target.result
+            // };
 
-            reader.readAsDataURL(file);
-
-            
+            // reader.readAsDataURL(file);
 
             const elem = document.createElement('canvas');
             elem.height = 224
             elem.width = 224
             const ctx = elem.getContext('2d')
-            ctx.drawImage(img, 0, 0, 224, 224);
+            ctx.drawImage(image, 0, 0, 224, 224);
             var imgData = ctx.getImageData(0, 0, 224, 224)
             
 
