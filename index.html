@@ -80,15 +80,15 @@
 			<div class="col-xl-6">
 				<div class="row">
 					<div class="col-md-8">
-						<label>Original prediction</label>
+						<label>Original prediction:</label>
 						<label id="zeroPrediction"></label>
 					</div>
 					<div class="col-md-8">
-						<label>Forge prediction</label>
+						<label>Forge prediction:</label>
 						<label id="onePrediction"></label>
 					</div>
 					<div class="col-md-8">
-						<label>Final prediction</label>
+						<label>Final prediction:</label>
 						<label id="prediction"></label>
 					</div>
 				</div>
@@ -142,8 +142,8 @@
 
             var finalPrediction = zero_prediction>one_prediction ? 'Signature is original' : 'Signature is forged'
 
-            document.getElementById('zeroPrediction').innerText = zero_prediction
-            document.getElementById('onePrediction').innerText = one_prediction
+            document.getElementById('zeroPrediction').innerText = zero_prediction + " %"
+            document.getElementById('onePrediction').innerText = one_prediction + " %"
             document.getElementById('prediction').innerText = finalPrediction
 
             console.log(output);
