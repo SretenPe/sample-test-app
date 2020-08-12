@@ -54,17 +54,20 @@
         {
             let model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
             model.summary();
+            const preview = document.querySelector('blah');
+            const file = document.querySelector('input[type=file]').files[0];
 
             var reader = new FileReader();
             const img = new Image()
             
+            reader.readAsDataURL(file);
             reader.onload = function (e) {
                 $('#blah')
                     .attr('src', e.target.result);
                 img.src = e.target.result
             };
 
-            reader.readAsDataURL(input.files[0]);
+            
 
             const elem = document.createElement('canvas');
             elem.height = 224
