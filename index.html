@@ -25,12 +25,38 @@
         </style>
     </head>
     <body>
-        <label id="outputField">Hello</label>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
+                    <div class="jumbotron card card-block">
+                        <h2>
+                            Signature Fraud Detection
+                        </h2>
+                        <p>
+                            To verify a signature, click the button below and upload a close-up image of a signature.
+                        </p>
+                        <input type='file' onchange="readURL(this);" />
+                        <img id="blah" src="https://placehold.it/180" alt="your image" width="224" height="224"/> 
+                        <button class="button button2" onclick="predict()">Predict</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Original prediction</label>
+                    <div id="zeroPrediction"></div>
+                </div>
+                <div class="col-md-4">
+                    <label>Forge prediction</label>
+                    <div id="onePrediction"></div>
+                </div>
+                <div class="col-md-4">
+                    <label>Final prediction</label>
+                    <div id="prediction"></div>
+                </div>
+            </div>
+        </div>
 
-        <input type='file' onchange="readURL(this);" />
-        <img id="blah" src="https://placehold.it/180" alt="your image" />
-        <br>
-        <button class="button button2" onclick="predict()">Blue</button>
     </body>
     <script>
         
@@ -56,18 +82,6 @@
         {
             let model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
             model.summary();
-            // const preview = document.querySelector('blah');
-            // const file = document.querySelector('input[type=file]').files[0];
-
-            // var reader = new FileReader();
-            // const img = new Image()
-            
-            
-            // reader.onload = function (e) {
-            //     img.src = e.target.result
-            // };
-
-            // reader.readAsDataURL(file);
 
             const elem = document.createElement('canvas');
             elem.height = 224
@@ -80,7 +94,19 @@
             var example = tf.browser.fromPixels(imgData);
             example = example.expandDims(0);
             const output = await model.predict(example).data();
+
+            var zero_prediction = output[0]
+            var one_prediction = output[1]
+
+            var finalPrediction = zero_prediction>one_prediction ? 'Signature is original' : 'Signature is forged'
+
+            document.getElementById('zeroPrediction').innerText = zero_prediction
+            document.getElementById('onePrediction').innerText = one_prediction
+            document.getElementById('prediction').innerText = finalPrediction
+
             console.log(output);
+
+
         }
 
 		//document.getElementById('outputField').innerText = model.predict(tf.tensor2d([20],[1,1]));
