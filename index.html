@@ -73,7 +73,7 @@
             elem.height = 224
             elem.width = 224
             const ctx = elem.getContext('2d')
-            ctx.drawImage(img, 0, 0, width, height)
+            ctx.drawImage(img, 0, 0, 224, 224)
             const data = ctx.canvas.toDataURL(img, 'image/png' , 1);
 
             var example = tf.browser.fromPixels(data);
