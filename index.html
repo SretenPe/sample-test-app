@@ -6,7 +6,7 @@
         <script>
             var image = new Image()
             var model = null
-            document.getElementById("Button").disabled = true;
+            
         </script>
 
         <style>
@@ -100,7 +100,10 @@
           <br>
           <div style="text-align:center">
 			<input type='file' onchange="readURL(this);" />
-			<button id="Button" class="button button1" onclick="predict()">Predict</button>
+      <button id="Button" class="button button1" onclick="predict()">Predict</button>
+      <script>
+        document.getElementById("Button").disabled = true;
+      </script>
 		  </div>
 		</div>
     </body>
