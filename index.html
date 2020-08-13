@@ -5,6 +5,8 @@
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
         <script>
             var image = new Image()
+            let model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
+            model.summary();
         </script>
 
         <style>
@@ -122,8 +124,7 @@
 
         async function predict() 
         {
-            let model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
-            model.summary();
+            
 
             const elem = document.createElement('canvas');
             elem.height = 224
@@ -142,8 +143,8 @@
 
             var finalPrediction = zero_prediction>one_prediction ? 'Signature is original' : 'Signature is forged'
 
-            document.getElementById('zeroPrediction').innerText = zero_prediction + " %"
-            document.getElementById('onePrediction').innerText = one_prediction + " %"
+            document.getElementById('zeroPrediction').innerText = 100*zero_prediction + " %"
+            document.getElementById('onePrediction').innerText = 100*one_prediction + " %"
             document.getElementById('prediction').innerText = finalPrediction
 
             console.log(output);
