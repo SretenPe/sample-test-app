@@ -5,13 +5,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
         <script>
             var image = new Image()
-            async function init()
-            {
-              return model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
-
-            }
-            var model = init()
-            model.summary();
+           
         </script>
 
         <style>
@@ -157,7 +151,13 @@
 
 
         }
+        async function init()
+        {
+          return model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
 
+        }
+        var model = init()
+        model.summary();
 		//document.getElementById('outputField').innerText = model.predict(tf.tensor2d([20],[1,1]));
     </script>
 	
