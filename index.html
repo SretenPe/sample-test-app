@@ -147,7 +147,7 @@
             
 
             var example = tf.browser.fromPixels(imgData);
-            let tensor = example.expandDims(0).toFloat();
+            let tensor = example.toFloat();
 
             //PREPROCESING
             let meanImageNetRGB = {
@@ -179,7 +179,7 @@
             ], 1)
                 .reshape([224, 224, 3])
                 .reverse(2)
-                .expandDims();
+                .expandDims(0);
 
             const output = await model.predict(processedTensor).data();
 
