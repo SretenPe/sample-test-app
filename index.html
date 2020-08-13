@@ -5,13 +5,12 @@
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
         <script>
             var image = new Image()
-            var model
             async function init()
             {
-              model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
+              return model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
 
             }
-            init()
+            var model = init()
             model.summary();
         </script>
 
