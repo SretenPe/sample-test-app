@@ -6,7 +6,13 @@
         <script>
             var image = new Image()
             var model = null
-            
+            async function init()
+            {
+              model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
+              document.getElementById("Button").disabled = false;
+              return model
+            }
+            model = init()
         </script>
 
         <style>
@@ -155,13 +161,7 @@
 
 
         }
-        async function init()
-        {
-          model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
-          document.getElementById("Button").disabled = false;
-          return model
-        }
-        model = init()
+        
 		//document.getElementById('outputField').innerText = model.predict(tf.tensor2d([20],[1,1]));
     </script>
 	
