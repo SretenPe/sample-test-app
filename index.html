@@ -5,7 +5,8 @@
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
         <script>
             var image = new Image()
-            var model
+            var model = null
+            document.getElementById("Button").disabled = true;
         </script>
 
         <style>
@@ -99,7 +100,7 @@
           <br>
           <div style="text-align:center">
 			<input type='file' onchange="readURL(this);" />
-			<button class="button button1" onclick="predict()">Predict</button>
+			<button id="Button" class="button button1" onclick="predict()">Predict</button>
 		  </div>
 		</div>
     </body>
@@ -153,8 +154,9 @@
         }
         async function init()
         {
-          return model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
-
+          model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
+          document.getElementById("Button").disabled = false;
+          return model
         }
         model = init()
 		//document.getElementById('outputField').innerText = model.predict(tf.tensor2d([20],[1,1]));
