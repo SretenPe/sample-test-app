@@ -6,12 +6,12 @@
         <script>
             var image = new Image()
             var model = null
-            // async function init()
-            // {
-            //   model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
-            //   document.getElementById("Button").disabled = false;
-            //   return model
-            // }
+            async function init()
+            {
+              model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json');
+              document.getElementById("Button").disabled = false;
+              return model
+            }
             //model = init()
         </script>
 
@@ -108,7 +108,7 @@
 			<input type='file' onchange="readURL(this);" />
       <button id="Button" value="Evaluate" class="button button1" onclick="predict()"></button>
       <script>
-        //document.getElementById("Button").disabled = true;
+        document.getElementById('Button').innerText = "Evaluate"
       </script>
 		  </div>
 		</div>
@@ -133,10 +133,11 @@
 
         async function predict() 
         {
+            document.getElementById('Button').innerText = "Evaluating..."
             if(model == null)
               model = await tf.loadLayersModel('https://team3pytest.herokuapp.com/model.json')
 
-            document.getElementById('Button').innerText = "Evaluating..."
+            
             const elem = document.createElement('canvas');
             elem.height = 224
             elem.width = 224
