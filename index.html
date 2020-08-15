@@ -44,7 +44,7 @@
 			/* Position text in the middle of the page/image */
 			.bg-text {
 			  background-color: rgb(0,0,0); /* Fallback color */
-			  background-color: rgba(0,0,0, 0.7); /* Black w/opacity/see-through */
+			  background-color: rgba(0,0,0, 0.6);/*ack w/opacity/see-through */
 			  color: white;
 			  font-weight: bold;
 			  border: 3px solid #f1f1f1;
@@ -106,10 +106,13 @@
           <br>
           <div style="text-align:center">
 			<input type='file' onchange="readURL(this);" />
-      <button id="Button" value="Evaluate" class="button button1" onclick="predict()"></button>
-      <script>
-        document.getElementById('Button').innerText = "Evaluate"
-      </script>
+			<button id="Button" value="Evaluate" class="button button1" onclick="predict()"></button>
+			  <script>
+				document.getElementById('Button').innerText = "Evaluate"
+			  </script>
+		  </div>
+		  <div>
+			<a href="team3pytest.herokuapp.com/model.json" download>Download File</a>
 		  </div>
 		</div>
     </body>
